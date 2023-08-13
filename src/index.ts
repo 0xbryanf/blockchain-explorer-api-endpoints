@@ -9,6 +9,9 @@ import TxByHashController from '@/resources/Ethereum/Goerli/Accounts/getInternal
 import TxByBlockRangeController from '@/resources/Ethereum/Goerli/Accounts/getInternalTxByBlockRange/getInternalTxByBlockRange.controller';
 import ERC20TxController from '@/resources/Ethereum/Goerli/Accounts/getERC20TokenTransfer/getERC20TokenTransfer.controller';
 import ERC721TxController from '@/resources/Ethereum/Goerli/Accounts/getERC721TokenTransfer/getERC721TokenTransfer.controller';
+import ContractStatusController from '@/resources/Ethereum/Goerli/Transactions/getContractStatus/getContractStatus.controller';
+import TxReceiptStatusController from '@/resources/Ethereum/Goerli/Transactions/getTxReceiptStatus/getTxReceiptStatus.controller';
+import BlockNumberController from '@/resources/Ethereum/Goerli/Blocks/getBlockNumber/getBlockNumber.controller';
 
 validateEnv();
 const app = new App([
@@ -19,6 +22,8 @@ const app = new App([
     new TxByBlockRangeController(),
     new ERC20TxController(),
     new ERC721TxController(),
-
+    new ContractStatusController(),
+    new TxReceiptStatusController(),
+    new BlockNumberController(),
 ], Number(process.env.port));
 app.listen();
