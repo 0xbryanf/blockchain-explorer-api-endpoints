@@ -3,12 +3,12 @@ import Controller from '@/utils/interfaces/controller.interface';
 import HttpException from '@/utils/exceptions/http.exception';
 import ValidationMiddleware from '@/middleware/validation.middleware';
 import Validate from '@/resources/Ethereum/Goerli/Accounts/getERC721TokenTransfer/getERC721TokenTransfer.validation';
-import ERC721TxService from '@/resources/Ethereum/Goerli/Accounts/getERC721TokenTransfer/getERC721TokenTransfer.service';
+import GoerliERC721TxService from '@/resources/Ethereum/Goerli/Accounts/getERC721TokenTransfer/getERC721TokenTransfer.service';
 
-class ERC721TxController implements Controller {
-    public path = '/get-transaction-list';
+class GoerliERC721TxController implements Controller {
+    public path = '/goerli';
     public router = Router();
-    private ERC721TxService = new ERC721TxService();
+    private GoerliERC721TxService = new GoerliERC721TxService();
 
     constructor() {
         this.initialiseRoutes();
@@ -16,7 +16,7 @@ class ERC721TxController implements Controller {
 
     private initialiseRoutes(): void {
         this.router.post(
-            `${this.path}/erc721`,
+            `${this.path}/get-erc721tx`,
             ValidationMiddleware(Validate.getERC721Tx),
             this.getERC721Tx
         )
@@ -25,11 +25,11 @@ class ERC721TxController implements Controller {
     private getERC721Tx = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { contractaddress, address } = req.body;
-            res.status(200).json(await this.ERC721TxService.getERC721Tx(contractaddress, address));
+            res.status(200).json(await this.GoerliERC721TxService.getERC721Tx(contractaddress, address));
         } catch (error: any) {
             next(new HttpException(400, error.message));
         }
     }
 }
 
-export default ERC721TxController;
+export default GoerliERC721TxController;

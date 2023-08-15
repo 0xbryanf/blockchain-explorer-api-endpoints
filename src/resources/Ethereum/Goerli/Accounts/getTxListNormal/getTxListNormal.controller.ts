@@ -3,12 +3,12 @@ import Controller from '@/utils/interfaces/controller.interface';
 import HttpException from '@/utils/exceptions/http.exception';
 import ValidationMiddleware from '@/middleware/validation.middleware';
 import Validate from '@/resources/Ethereum/Goerli/Accounts/getTxListNormal/getTxListNormal.validation';
-import TxListNormalService from '@/resources/Ethereum/Goerli/Accounts/getTxListNormal/getTxListNormal.service';
+import GoerliTxListNormalService from '@/resources/Ethereum/Goerli/Accounts/getTxListNormal/getTxListNormal.service';
 
-class TxListNormalController implements Controller {
-    public path = '/get-transaction-list';
+class GoerliTxListNormalController implements Controller {
+    public path = '/goerli';
     public router = Router();
-    private TxListNormalService = new TxListNormalService();
+    private GoerliTxListNormalService = new GoerliTxListNormalService();
 
     constructor() {
         this.initialiseRoutes();
@@ -16,7 +16,7 @@ class TxListNormalController implements Controller {
 
     private initialiseRoutes(): void {
         this.router.post(
-            `${this.path}/normal`,
+            `${this.path}/get-normaltx`,
             ValidationMiddleware(Validate.getTxListNormal),
             this.getTxListNormal
         )
@@ -25,11 +25,11 @@ class TxListNormalController implements Controller {
     private getTxListNormal = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { address } = req.body;
-            res.status(200).json(await this.TxListNormalService.getTxListNormal(address));
+            res.status(200).json(await this.GoerliTxListNormalService.getTxListNormal(address));
         } catch (error: any) {
             next(new HttpException(400, error.message));
         }
     }
 }
 
-export default TxListNormalController;
+export default GoerliTxListNormalController;

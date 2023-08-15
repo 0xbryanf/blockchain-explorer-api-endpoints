@@ -3,9 +3,9 @@ import HttpException from '@/utils/exceptions/http.exception';
 import axios, { AxiosResponse } from 'axios';
 
 const apiKey: string = process.env.ETHERSCAN_API_KEY!;
-const apiUrl: string = process.env.ETHERSCAN_API_URL!;
+const apiUrl: string = process.env.GOERLI_API_URL!;
 
-class TxByBlockRangeService {
+class GoerliTxByBlockRangeService {
     public async getTxByBlockRange(startblock: number, endblock: number): Promise<string | Error> {
         try {
             const params: ApiParams = {
@@ -31,4 +31,4 @@ class TxByBlockRangeService {
     }
 }
 
-export default TxByBlockRangeService;
+export default GoerliTxByBlockRangeService;

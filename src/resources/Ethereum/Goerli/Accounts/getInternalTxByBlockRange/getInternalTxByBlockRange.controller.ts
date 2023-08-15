@@ -3,12 +3,12 @@ import Controller from '@/utils/interfaces/controller.interface';
 import HttpException from '@/utils/exceptions/http.exception';
 import ValidationMiddleware from '@/middleware/validation.middleware';
 import Validate from '@/resources/Ethereum/Goerli/Accounts/getInternalTxByBlockRange/getInternalTxByBlockRange.validation';
-import TxByBlockRangeService from '@/resources/Ethereum/Goerli/Accounts/getInternalTxByBlockRange/getInternalTxByBlockRange.service';
+import GoerliTxByBlockRangeService from '@/resources/Ethereum/Goerli/Accounts/getInternalTxByBlockRange/getInternalTxByBlockRange.service';
 
-class TxByBlockRangeController implements Controller {
-    public path = '/get-transaction/internal';
+class GoerliTxByBlockRangeController implements Controller {
+    public path = '/goerli';
     public router = Router();
-    private TxByBlockRangeService = new TxByBlockRangeService();
+    private GoerliTxByBlockRangeService = new GoerliTxByBlockRangeService();
 
     constructor() {
         this.initialiseRoutes();
@@ -16,7 +16,7 @@ class TxByBlockRangeController implements Controller {
 
     private initialiseRoutes(): void {
         this.router.post(
-            `${this.path}/byblockrange`,
+            `${this.path}/get-internaltx-byblockrange`,
             ValidationMiddleware(Validate.getTxByBlockRange),
             this.getTxByBlockRange
         )
@@ -25,11 +25,11 @@ class TxByBlockRangeController implements Controller {
     private getTxByBlockRange = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { startblock, endblock } = req.body;
-            res.status(200).json(await this.TxByBlockRangeService.getTxByBlockRange(startblock, endblock));
+            res.status(200).json(await this.GoerliTxByBlockRangeService.getTxByBlockRange(startblock, endblock));
         } catch (error: any) {
             next(new HttpException(400, error.message));
         }
     }
 }
 
-export default TxByBlockRangeController;
+export default GoerliTxByBlockRangeController;

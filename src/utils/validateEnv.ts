@@ -5,7 +5,11 @@ function validateEnv(): void {
         NODE_ENV: str({
             choices: ['development', 'production']
         }),
-        PORT: port({ default: 3000 })
+        PORT: port({ default: 3000 }),
+        ETHERSCAN_API_KEY: str(),
+        GOERLI_API_URL: str(),
+        POLYGON_API_KEY: str(),
+        POLYGON_ZKEVM_TESTNET_API_URL: str()
     });
 }
 

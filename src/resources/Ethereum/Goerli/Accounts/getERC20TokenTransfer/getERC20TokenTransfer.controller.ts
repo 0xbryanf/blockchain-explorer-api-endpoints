@@ -3,12 +3,12 @@ import Controller from '@/utils/interfaces/controller.interface';
 import HttpException from '@/utils/exceptions/http.exception';
 import ValidationMiddleware from '@/middleware/validation.middleware';
 import Validate from '@/resources/Ethereum/Goerli/Accounts/getERC20TokenTransfer/getERC20TokenTransfer.validation';
-import ERC20TxService from '@/resources/Ethereum/Goerli/Accounts/getERC20TokenTransfer/getERC20TokenTransfer.service';
+import GoerliERC20TxService from '@/resources/Ethereum/Goerli/Accounts/getERC20TokenTransfer/getERC20TokenTransfer.service';
 
-class ERC20TxController implements Controller {
-    public path = '/get-transaction-list';
+class GoerliERC20TxController implements Controller {
+    public path = '/goerli';
     public router = Router();
-    private ERC20TxService = new ERC20TxService();
+    private GoerliERC20TxService = new GoerliERC20TxService();
 
     constructor() {
         this.initialiseRoutes();
@@ -16,7 +16,7 @@ class ERC20TxController implements Controller {
 
     private initialiseRoutes(): void {
         this.router.post(
-            `${this.path}/erc20`,
+            `${this.path}/get-erc20tx`,
             ValidationMiddleware(Validate.getERC20Tx),
             this.getERC20Tx
         )
@@ -25,11 +25,11 @@ class ERC20TxController implements Controller {
     private getERC20Tx = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { contractaddress, address } = req.body;
-            res.status(200).json(await this.ERC20TxService.getERC20Tx(contractaddress, address));
+            res.status(200).json(await this.GoerliERC20TxService.getERC20Tx(contractaddress, address));
         } catch (error: any) {
             next(new HttpException(400, error.message));
         }
     }
 }
 
-export default ERC20TxController;
+export default GoerliERC20TxController;

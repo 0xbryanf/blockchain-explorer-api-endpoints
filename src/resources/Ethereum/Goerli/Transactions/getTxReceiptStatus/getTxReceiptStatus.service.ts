@@ -1,11 +1,11 @@
-import {ApiParams} from "@/resources/Ethereum/Goerli/Transactions/getTxReceiptStatus/getContractStatus.interface";
+import {ApiParams} from "@/resources/Ethereum/Goerli/Transactions/getTxReceiptStatus/getTxReceiptStatus.interface";
 import HttpException from "@/utils/exceptions/http.exception";
 import axios, { AxiosResponse } from 'axios';
 
 const apiKey: string = process.env.ETHERSCAN_API_KEY!;
-const apiUrl: string = process.env.ETHERSCAN_API_URL!;
+const apiUrl: string = process.env.GOERLI_API_URL!;
 
-class TxReceiptStatusService {
+class GoerliTxReceiptStatusService {
     public async getTxReceiptStatus(txHash: string): Promise<string | Error> {
         try {
             const params: ApiParams = {
@@ -26,4 +26,4 @@ class TxReceiptStatusService {
     }
 }
 
-export default TxReceiptStatusService;
+export default GoerliTxReceiptStatusService;

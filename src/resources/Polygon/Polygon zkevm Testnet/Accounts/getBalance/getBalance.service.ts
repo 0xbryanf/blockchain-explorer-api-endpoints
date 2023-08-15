@@ -1,19 +1,18 @@
-import {ApiParams} from "@/resources/Ethereum/Goerli/Accounts/getBalance/getBalance.interface";
+import {ApiParams} from "@/resources/Polygon/Polygon zkevm Testnet/Accounts/getBalance/getBalance.interface";
 import HttpException from "@/utils/exceptions/http.exception";
 import axios, { AxiosResponse } from 'axios';
 import { ethers } from 'ethers';
 
-const apiKey: string = process.env.ETHERSCAN_API_KEY!;
-const apiUrl: string = process.env.GOERLI_API_URL!;
+const apiKey: string = process.env.POLYGON_API_KEY!;
+const apiUrl: string = process.env.POLYGON_ZKEVM_TESTNET_API_URL!;
 
-class GoerliBalanceService {
+class PolyZKEVMTestnetBalanceService {
     public async getBalance(address: string): Promise<string | Error> {
         try {
             const params: ApiParams = {
                 module: 'account',
                 action: 'balance',
                 address: address,
-                tag: 'latest',
                 apiKey: apiKey
             };
             const response: AxiosResponse = await axios.get(apiUrl, { params });
@@ -28,4 +27,4 @@ class GoerliBalanceService {
     }
 }
 
-export default GoerliBalanceService;
+export default PolyZKEVMTestnetBalanceService;

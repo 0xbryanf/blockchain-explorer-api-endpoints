@@ -3,9 +3,9 @@ import HttpException from "@/utils/exceptions/http.exception";
 import axios, { AxiosResponse } from 'axios';
 
 const apiKey: string = process.env.ETHERSCAN_API_KEY!;
-const apiUrl: string = process.env.ETHERSCAN_API_URL!;
+const apiUrl: string = process.env.GOERLI_API_URL!;
 
-class EthLatestPriceService {
+class GoerliEthLatestPriceService {
     public async getEthLatestPrice(): Promise<string | Error> {
         try {
             const params: ApiParams = {
@@ -14,7 +14,6 @@ class EthLatestPriceService {
                 apikey: apiKey
             };
             const response: AxiosResponse = await axios.get(apiUrl, { params });
-            console.log(response)
             if (response.data.status === '1') {
                 return response.data.result;
             } else {
@@ -26,4 +25,4 @@ class EthLatestPriceService {
     }
 }
 
-export default EthLatestPriceService;
+export default GoerliEthLatestPriceService;

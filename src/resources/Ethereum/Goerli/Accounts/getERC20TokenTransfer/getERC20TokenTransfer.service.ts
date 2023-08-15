@@ -3,9 +3,9 @@ import HttpException from '@/utils/exceptions/http.exception';
 import axios, { AxiosResponse } from 'axios';
 
 const apiKey: string = process.env.ETHERSCAN_API_KEY!;
-const apiUrl: string = process.env.ETHERSCAN_API_URL!;
+const apiUrl: string = process.env.GOERLI_API_URL!;
 
-class ERC20TxService {
+class GoerliERC20TxService {
     public async getERC20Tx(contractaddress: string, address: string): Promise<string[] | Error> {
         try {
             const params: ApiParams = {
@@ -36,4 +36,4 @@ class ERC20TxService {
     }
 }
 
-export default ERC20TxService;
+export default GoerliERC20TxService;

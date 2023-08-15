@@ -3,12 +3,12 @@ import Controller from '@/utils/interfaces/controller.interface';
 import HttpException from '@/utils/exceptions/http.exception';
 import ValidationMiddleware from '@/middleware/validation.middleware';
 import Validate from '@/resources/Ethereum/Goerli/Accounts/getTxListInternal/getTxListInternal.validation';
-import TxListInternalService from '@/resources/Ethereum/Goerli/Accounts/getTxListInternal/getTxListInternal.service';
+import GoerliTxListInternalService from '@/resources/Ethereum/Goerli/Accounts/getTxListInternal/getTxListInternal.service';
 
-class TxListInternalController implements Controller {
-    public path = '/get-transaction-list';
+class GoerliTxListInternalController implements Controller {
+    public path = '/goerli';
     public router = Router();
-    private TxListInternalService = new TxListInternalService();
+    private GoerliTxListInternalService = new GoerliTxListInternalService();
 
     constructor() {
         this.initialiseRoutes();
@@ -16,7 +16,7 @@ class TxListInternalController implements Controller {
 
     private initialiseRoutes(): void {
         this.router.post(
-            `${this.path}/internal`,
+            `${this.path}/get-internaltx`,
             ValidationMiddleware(Validate.getTxListInternal),
             this.getTxListInternal
         )
@@ -25,11 +25,11 @@ class TxListInternalController implements Controller {
     private getTxListInternal = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { address } = req.body;
-            res.status(200).json(await this.TxListInternalService.getTxListInternal(address));
+            res.status(200).json(await this.GoerliTxListInternalService.getTxListInternal(address));
         } catch (error: any) {
             next(new HttpException(400, error.message));
         }
     }
 }
 
-export default TxListInternalController;
+export default GoerliTxListInternalController;

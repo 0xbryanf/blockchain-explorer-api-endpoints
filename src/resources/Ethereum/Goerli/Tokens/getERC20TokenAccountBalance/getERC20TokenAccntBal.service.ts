@@ -4,9 +4,9 @@ import axios, { AxiosResponse } from 'axios';
 import { ethers } from 'ethers';
 
 const apiKey: string = process.env.ETHERSCAN_API_KEY!;
-const apiUrl: string = process.env.ETHERSCAN_API_URL!;
+const apiUrl: string = process.env.GOERLI_API_URL!;
 
-class ERC20TokenAccntBalService {
+class GoerliERC20TokenAccntBalService {
     public async getERC20TokenAccountBalance(contractAddress: string, address: string): Promise<string | Error> {
         try {
             const params: ApiParams = {
@@ -29,4 +29,4 @@ class ERC20TokenAccntBalService {
     }
 }
 
-export default ERC20TokenAccntBalService;
+export default GoerliERC20TokenAccntBalService;

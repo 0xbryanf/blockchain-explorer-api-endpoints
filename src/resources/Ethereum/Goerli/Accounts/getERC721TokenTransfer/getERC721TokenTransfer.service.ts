@@ -3,10 +3,11 @@ import HttpException from '@/utils/exceptions/http.exception';
 import axios, { AxiosResponse } from 'axios';
 
 const apiKey: string = process.env.ETHERSCAN_API_KEY!;
-const apiUrl: string = process.env.ETHERSCAN_API_URL!;
+const apiUrl: string = process.env.GOERLI_API_URL!;
 
-class ERC721TxService {
+class GoerliERC721TxService {
     public async getERC721Tx(contractaddress: string, address: string): Promise<string[] | Error> {
+        console.log(contractaddress)
         try {
             const params: ApiParams = {
                 module: 'account',
@@ -14,7 +15,7 @@ class ERC721TxService {
                 contractaddress: contractaddress,
                 address: address,
                 page: 1,
-                offset: 10,
+                offset: 100,
                 startblock: 0,
                 endblock: 99999999,
                 sort: 'asc',
@@ -36,4 +37,4 @@ class ERC721TxService {
     }
 }
 
-export default ERC721TxService;
+export default GoerliERC721TxService;

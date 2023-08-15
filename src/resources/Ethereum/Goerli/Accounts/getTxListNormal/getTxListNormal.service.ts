@@ -3,9 +3,9 @@ import HttpException from "@/utils/exceptions/http.exception";
 import axios, { AxiosResponse } from 'axios';
 
 const apiKey: string = process.env.ETHERSCAN_API_KEY!;
-const apiUrl: string = process.env.ETHERSCAN_API_URL!;
+const apiUrl: string = process.env.GOERLI_API_URL!;
 
-class TxListNormalService {
+class GoerliTxListNormalService {
     public async getTxListNormal(address: string): Promise<string[] | Error> {
         try {
             const params: ApiParams = {
@@ -35,4 +35,4 @@ class TxListNormalService {
     }
 }
 
-export default TxListNormalService;
+export default GoerliTxListNormalService;

@@ -1,12 +1,12 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import Controller from '@/utils/interfaces/controller.interface';
 import HttpException from '@/utils/exceptions/http.exception';
-import EthLatestPriceService from '@/resources/Ethereum/Goerli/Stats/getEthLatestPrice/getEthLatestPrice.service';
+import GoerliEthLatestPriceService from '@/resources/Ethereum/Goerli/Stats/getEthLatestPrice/getEthLatestPrice.service';
 
-class EthLatestPriceController implements Controller {
-    public path = '/get-eth-latestprice';
+class GoerliEthLatestPriceController implements Controller {
+    public path = '/goerli';
     public router = Router();
-    private EthLatestPriceService = new EthLatestPriceService();
+    private GoerliEthLatestPriceService = new GoerliEthLatestPriceService();
 
     constructor() {
         this.initialiseRoutes();
@@ -14,18 +14,18 @@ class EthLatestPriceController implements Controller {
 
     private initialiseRoutes(): void {
         this.router.post(
-            `${this.path}`,
+            `${this.path}/get-eth-latestprice`,
             this.getEthLatestPrice
         )
     }
 
     private getEthLatestPrice = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            res.status(200).json(await this.EthLatestPriceService.getEthLatestPrice());
+            res.status(200).json(await this.GoerliEthLatestPriceService.getEthLatestPrice());
         } catch (error: any) {
             next(new HttpException(400, error.message));
         }
     }
 }
 
-export default EthLatestPriceController;
+export default GoerliEthLatestPriceController;

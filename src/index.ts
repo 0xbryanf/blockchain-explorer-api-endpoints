@@ -2,35 +2,38 @@ import 'dotenv/config';
 import 'module-alias/register';
 import App from './app';
 import validateEnv from '@/utils/validateEnv';
-import BalanceController from '@/resources/Ethereum/Goerli/Accounts/getBalance/getBalance.controller';
-import TxListNormalController from '@/resources/Ethereum/Goerli/Accounts/getTxListNormal/getTxListNormal.controller';
-import TxListInternalController from '@/resources/Ethereum/Goerli/Accounts/getTxListInternal/getTxListInternal.controller';
-import TxByHashController from '@/resources/Ethereum/Goerli/Accounts/getInternalTxByHash/getInternalTxByHash.controller';
-import TxByBlockRangeController from '@/resources/Ethereum/Goerli/Accounts/getInternalTxByBlockRange/getInternalTxByBlockRange.controller';
-import ERC20TxController from '@/resources/Ethereum/Goerli/Accounts/getERC20TokenTransfer/getERC20TokenTransfer.controller';
-import ERC721TxController from '@/resources/Ethereum/Goerli/Accounts/getERC721TokenTransfer/getERC721TokenTransfer.controller';
-import ContractStatusController from '@/resources/Ethereum/Goerli/Transactions/getContractStatus/getContractStatus.controller';
-import TxReceiptStatusController from '@/resources/Ethereum/Goerli/Transactions/getTxReceiptStatus/getTxReceiptStatus.controller';
-import BlockNumberController from '@/resources/Ethereum/Goerli/Blocks/getBlockNumber/getBlockNumber.controller';
-import EthTotalSupplyController from '@/resources/Ethereum/Goerli/Stats/getEthTotalSupply/getEthTotalSupply.controller';
-import EthLatestPriceController from '@/resources/Ethereum/Goerli/Stats/getEthLatestPrice/getEthLatestPrice.controller';
-import ERC20TokenAccntBalController from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenAccountBalance/getERC20TokenAccntBal.controller';
-import ERC20TokenTotalSupplyController from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenTotalSupply/getERC20TokenTotalSupply.controller';
+import GoerliBalanceController from '@/resources/Ethereum/Goerli/Accounts/getBalance/getBalance.controller';
+import GoerliTxListNormalController from '@/resources/Ethereum/Goerli/Accounts/getTxListNormal/getTxListNormal.controller';
+import GoerliTxListInternalController from '@/resources/Ethereum/Goerli/Accounts/getTxListInternal/getTxListInternal.controller';
+import GoerliTxByHashController from '@/resources/Ethereum/Goerli/Accounts/getInternalTxByHash/getInternalTxByHash.controller';
+import GoerliTxByBlockRangeController from '@/resources/Ethereum/Goerli/Accounts/getInternalTxByBlockRange/getInternalTxByBlockRange.controller';
+import GoerliERC20TxController from '@/resources/Ethereum/Goerli/Accounts/getERC20TokenTransfer/getERC20TokenTransfer.controller';
+import GoerliERC721TxController from '@/resources/Ethereum/Goerli/Accounts/getERC721TokenTransfer/getERC721TokenTransfer.controller';
+import GoerliContractStatusController from '@/resources/Ethereum/Goerli/Transactions/getContractStatus/getContractStatus.controller';
+import GoerliTxReceiptStatusController from '@/resources/Ethereum/Goerli/Transactions/getTxReceiptStatus/getTxReceiptStatus.controller';
+import GoerliBlockNumberController from '@/resources/Ethereum/Goerli/Blocks/getBlockNumber/getBlockNumber.controller';
+import GoerliEthTotalSupplyController from '@/resources/Ethereum/Goerli/Stats/getEthTotalSupply/getEthTotalSupply.controller';
+import GoerliEthLatestPriceController from '@/resources/Ethereum/Goerli/Stats/getEthLatestPrice/getEthLatestPrice.controller';
+import GoerliERC20TokenAccntBalController from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenAccountBalance/getERC20TokenAccntBal.controller';
+import GoerliERC20TokenTotalSupplyController from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenTotalSupply/getERC20TokenTotalSupply.controller';
+import PolyZKEVMTestnetBalanceController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getBalance/getBalance.controller';
+
 validateEnv();
 const app = new App([
-    new BalanceController(),
-    new TxListNormalController(),
-    new TxListInternalController(),
-    new TxByHashController(),
-    new TxByBlockRangeController(),
-    new ERC20TxController(),
-    new ERC721TxController(),
-    new ContractStatusController(),
-    new TxReceiptStatusController(),
-    new BlockNumberController(),
-    new EthTotalSupplyController(),
-    new EthLatestPriceController(),
-    new ERC20TokenAccntBalController(),
-    new ERC20TokenTotalSupplyController(),
+    new GoerliBalanceController(),
+    new GoerliTxListNormalController(),
+    new GoerliTxListInternalController(),
+    new GoerliTxByHashController(),
+    new GoerliTxByBlockRangeController(),
+    new GoerliERC20TxController(),
+    new GoerliERC721TxController(),
+    new GoerliContractStatusController(),
+    new GoerliTxReceiptStatusController(),
+    new GoerliBlockNumberController(),
+    new GoerliEthTotalSupplyController(),
+    new GoerliEthLatestPriceController(),
+    new GoerliERC20TokenAccntBalController(),
+    new GoerliERC20TokenTotalSupplyController(),
+    new PolyZKEVMTestnetBalanceController(),
 ], Number(process.env.port));
 app.listen();

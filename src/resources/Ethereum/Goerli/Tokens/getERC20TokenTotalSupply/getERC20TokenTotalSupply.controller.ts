@@ -3,12 +3,12 @@ import Controller from '@/utils/interfaces/controller.interface';
 import HttpException from '@/utils/exceptions/http.exception';
 import ValidationMiddleware from '@/middleware/validation.middleware';
 import Validate from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenTotalSupply/getERC20TokenTotalSupply.validation';
-import ERC20TokenTotalSupplyService from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenTotalSupply/getERC20TokenTotalSupply.service';
+import GoerliERC20TokenTotalSupplyService from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenTotalSupply/getERC20TokenTotalSupply.service';
 
-class ERC20TokenTotalSupplyController implements Controller {
-    public path = '/get-erc20token-totalsupply';
+class GoerliERC20TokenTotalSupplyController implements Controller {
+    public path = '/goerli';
     public router = Router();
-    private ERC20TokenTotalSupplyService = new ERC20TokenTotalSupplyService();
+    private GoerliERC20TokenTotalSupplyService = new GoerliERC20TokenTotalSupplyService();
 
     constructor() {
         this.initialiseRoutes();
@@ -16,7 +16,7 @@ class ERC20TokenTotalSupplyController implements Controller {
 
     private initialiseRoutes(): void {
         this.router.post(
-            `${this.path}/bycontractaddress`,
+            `${this.path}/get-erc20token-totalsupply`,
             ValidationMiddleware(Validate.getERC20TokenTotalSupply),
             this.getERC20TokenTotalSupply
         )
@@ -25,11 +25,11 @@ class ERC20TokenTotalSupplyController implements Controller {
     private getERC20TokenTotalSupply = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { contractAddress } = req.body;
-            res.status(200).json(await this.ERC20TokenTotalSupplyService.getERC20TokenTotalSupply(contractAddress));
+            res.status(200).json(await this.GoerliERC20TokenTotalSupplyService.getERC20TokenTotalSupply(contractAddress));
         } catch (error: any) {
             next(new HttpException(400, error.message));
         }
     }
 }
 
-export default ERC20TokenTotalSupplyController;
+export default GoerliERC20TokenTotalSupplyController;
