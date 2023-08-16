@@ -17,7 +17,8 @@ import GoerliEthLatestPriceController from '@/resources/Ethereum/Goerli/Stats/ge
 import GoerliERC20TokenAccntBalController from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenAccountBalance/getERC20TokenAccntBal.controller';
 import GoerliERC20TokenTotalSupplyController from '@/resources/Ethereum/Goerli/Tokens/getERC20TokenTotalSupply/getERC20TokenTotalSupply.controller';
 import PolyZKEVMTestnetBalanceController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getBalance/getBalance.controller';
-
+import PolyZKEVMTestnetERC20TxController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getERC20TokenTransfer/getERC20TokenTransfer.controller';
+import PolyZKEVMTestnetERC721TxController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getERC721TokenTransfer/getERC721TokenTransfer.controller';
 validateEnv();
 const app = new App([
     new GoerliBalanceController(),
@@ -35,5 +36,7 @@ const app = new App([
     new GoerliERC20TokenAccntBalController(),
     new GoerliERC20TokenTotalSupplyController(),
     new PolyZKEVMTestnetBalanceController(),
+    new PolyZKEVMTestnetERC20TxController(),
+    new PolyZKEVMTestnetERC721TxController()
 ], Number(process.env.port));
 app.listen();

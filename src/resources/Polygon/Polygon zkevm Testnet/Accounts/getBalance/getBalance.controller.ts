@@ -6,7 +6,7 @@ import Validate from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getBala
 import PolyZKEVMTestnetBalanceService from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getBalance/getBalance.service';
 
 class PolyZKEVMTestnetBalanceController implements Controller {
-    public path = '/polygon-zkevm';
+    public path = '/polygon-zkevm-testnet';
     public router = Router();
     private PolyZKEVMTestnetBalanceService = new PolyZKEVMTestnetBalanceService();
 
