@@ -19,6 +19,10 @@ import GoerliERC20TokenTotalSupplyController from '@/resources/Ethereum/Goerli/T
 import PolyZKEVMTestnetBalanceController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getBalance/getBalance.controller';
 import PolyZKEVMTestnetERC20TxController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getERC20TokenTransfer/getERC20TokenTransfer.controller';
 import PolyZKEVMTestnetERC721TxController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getERC721TokenTransfer/getERC721TokenTransfer.controller';
+import PolyZKEVMTestnetTxByBlockRangeController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getInternalTxByBlockRange/getInternalTxByBlockRange.controller';
+import PolyZKEVMTestnetTxByHashController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getInternalTxByHash/getInternalTxByHash.controller';
+import PolyZKEVMTestnetTxListInternalController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getTxListInternal/getTxListInternal.controller';
+import PolyZKEVMTxListNormalController from '@/resources/Polygon/Polygon zkevm Testnet/Accounts/getTxListNormal/getTxListNormal.controller';
 validateEnv();
 const app = new App([
     new GoerliBalanceController(),
@@ -37,6 +41,10 @@ const app = new App([
     new GoerliERC20TokenTotalSupplyController(),
     new PolyZKEVMTestnetBalanceController(),
     new PolyZKEVMTestnetERC20TxController(),
-    new PolyZKEVMTestnetERC721TxController()
+    new PolyZKEVMTestnetERC721TxController(),
+    new PolyZKEVMTestnetTxByBlockRangeController(),
+    new PolyZKEVMTestnetTxByHashController(),
+    new PolyZKEVMTestnetTxListInternalController(),
+    new PolyZKEVMTxListNormalController()
 ], Number(process.env.port));
 app.listen();
